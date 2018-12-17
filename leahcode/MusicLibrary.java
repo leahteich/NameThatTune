@@ -57,7 +57,17 @@ public static double[] sum(double[] a, double[] b, double awt, double bwt) {
   return MusicTools.weightedAddArray(a, b, awt, bwt);
 }
 
-//public static double[] trim(double[] array) {}
+public static double[] trim(double[] array) {
+  int zerocount = 0;
+  for (int i = 0; i < array.length; i++) {
+    if (array[i]==0) {
+      zerocount++;
+    }
+  }
+  double[] newArray = new double[array.length-zerocount];
+  for (int i = 0; i < newArray.length; i++) {}
+
+}
 //public static double[] delay(double volume, double duration) {}
 //public static double[] changeVolume(double[] array, double scalar) {}
 //public static double[] fade(double in, double out) {}
