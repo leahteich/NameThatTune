@@ -72,6 +72,24 @@ public static double[] trim(double[] array) {
 
 } //trim
 
+public static double[] fade(double[] array, int in, int out) {
+double scale;
+int fadeinDuration = in;
+int fadeoutDuration = (array.length)-out;
+
+//fade in
+for(int i=0; i<in; i++){
+scale++;
+
+  array[i]*scale;
+}
+
+//fade out
+  for (int i = out; i < array.length; i++) {
+    scale++;
+    array[i]*scale;
+  }
+} //fade
 
 //public static double[] delay(double volume, double duration) {}
 //public static double[] changeVolume(double[] array, double scalar) {}
