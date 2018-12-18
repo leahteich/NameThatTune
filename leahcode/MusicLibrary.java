@@ -74,13 +74,17 @@ public static double[] trim(double[] array) {
 
 public static double[] changeVolume(double[] array, double scalar) {
   return scaleArray(array, scalar);
-} 
+}
+
+public static double[] fade(String direction, double duration) {
+
+
+}
+
 
 //public static double[] delay(double volume, double duration) {}
 
 
-//public static double[] fadeIn() {}
-//public static double[] fadeOut() {}
 //public static double[] clip(double bound) {}
 
 
