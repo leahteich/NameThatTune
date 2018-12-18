@@ -58,14 +58,16 @@ public static double[] sum(double[] a, double[] b, double awt, double bwt) {
 }
 
 public static double[] trim(double[] array) {
-  int zerocount = 0;
+  int leadzeroes = 0;
   for (int i = 0; i < array.length; i++) {
     if (array[i]==0) {
-      zerocount++;
+      leadzeroes++;
     }
   }
-  double[] newArray = new double[array.length-zerocount];
-  for (int i = 0; i < newArray.length; i++) {}
+  double[] newArray = new double[array.length-leadzeroes];
+  for (int i = 0; i < newArray.length; i++) {
+    newArray[i] = array[leadzeroes];
+  }
 
 }
 //public static double[] delay(double volume, double duration) {}
