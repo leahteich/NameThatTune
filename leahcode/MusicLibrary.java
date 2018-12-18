@@ -32,7 +32,8 @@ public static double[] minorChord(int pitch, double duration) {
     double[] hi = pitch(p, duration);
     double[] h  = MusicTools.weightedAddArray(mid, hi, 0.5, 0.5);
     return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
-}
+} //minorChord
+
 public static double[] majorChord(int pitch, double duration) {
     double hz = 440.0 * Math.pow(2, pitch / 12.0);
     double m = 440.0 * Math.pow(2, (pitch + 4) / 12.0);
@@ -42,7 +43,7 @@ public static double[] majorChord(int pitch, double duration) {
     double[] hi = pitch(p, duration);
     double[] h  = MusicTools.weightedAddArray(mid, hi, 0.5, 0.5);
     return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
-}
+} //majorChord
 
 public static double[] pitch(double hz, double duration) {
     int n = (int) (StdAudio.SAMPLE_RATE * duration);
@@ -51,11 +52,11 @@ public static double[] pitch(double hz, double duration) {
         a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
     }
     return a;
-}
+} //pitch
 
 public static double[] sum(double[] a, double[] b, double awt, double bwt) {
   return MusicTools.weightedAddArray(a, b, awt, bwt);
-}
+} //sum
 
 public static double[] trim(double[] array) {
   int leadzeroes = 0;
@@ -69,7 +70,9 @@ public static double[] trim(double[] array) {
     newArray[i] = array[leadzeroes];
   }
 
-}
+} //trim
+
+
 //public static double[] delay(double volume, double duration) {}
 //public static double[] changeVolume(double[] array, double scalar) {}
 //public static double[] fade(double in, double out) {}
