@@ -98,25 +98,73 @@ public class MusicLibrary {
 //creating libraries and playing libraries
 //harmonic adds 3 together, takes it to original pitch and
 //input random numbers, form major chords and minor chords, and change these values in order, repeat them, in order to make a song
-public static double[] fadeIn(double[] array, double in) {
+public static double[] fadeIn(double[] array, int in) {
     int fadeInDuration = (int) (StdAudio.SAMPLE_RATE * in);
-    double[] fadeInArray = new double[array.length];
-      for (int i =0; i<in; i++) {
-        fadeInArray[i]= array[i]*i/in;
+    double[] fadeInArray = new double[array.length+1];
+      for (int i =0; i<fadeInDuration; i++) {
+        fadeInArray[i]= array[i]*i/fadeInDuration;
       }
       return fadeInArray;
 }//fade in
 
 public static double[] fadeOut(double[] array, int out) {
     int fadeOutDuration = (int) (StdAudio.SAMPLE_RATE * out);
-    double[] fadeOutArray = new double[array.length];
-    for (int i =0; i<out; i++) {
-      fadeOutArray[fadeOutArray.length-i-1]= (array[fadeOutArray.length-i-1]*i)/out;
+    double[] fadeOutArray = new double[array.length+1];
+    for (int i =0; i<fadeOutDuration; i++) {
+      fadeOutArray[fadeOutArray.length-i-1]= (array[fadeOutArray.length-i-1]*i)/fadeOutDuration;
 //percentage
     }
     return fadeOutArray;
 } //fade out
 
+public static double[] changeVolume(double[] array, double volume) {
+    return MusicTools.scale(a, volume);
+}
+
+/*public static double[] clip(double[] array, int out) {
+public static double[] fadeinnote(int pitch, double duration, double fadeloc) {
+    double hz = 440.0 * Math.pow(2, pitch / 12.0);
+    double[] a  = fadeintone(hz, duration, fadeloc);
+    //MusicTools.printArray(a);
+    return (a);
+  }
+  public static double[] fadeintone(double hz, double duration, double fadeloc) {
+    int n = (int) (StdAudio.SAMPLE_RATE * duration);
+    int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
+    double[] a = new double[n+1];
+    for (int i = 0; i <= f; i++) {
+      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(f))*i;
+      //  a[i] = (.1*q)*Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+      a[i] = q;
+
+    }
+    for (int i = f; i <= n; i++) {
+      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+    }
+    return a;
+  }
+
+  public static double[] fadeoutnote(int pitch, double duration, double fadeloc) {
+    double hz = 440.0 * Math.pow(2, pitch / 12.0);
+    double[] a  = fadeouttone(hz, duration, fadeloc);
+    //MusicTools.printArray(a);
+    return (a);
+  }
+  public static double[] fadeouttone(double hz, double duration, double fadeloc) {
+    int n = (int) (StdAudio.SAMPLE_RATE * duration);
+    int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
+    double[] a = new double[n+1];
+    for (int i = 0; i <= f; i++) {
+      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
+    }
+    for (int i = f; i <= n; i++) {
+      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(n-f))*((n-f)-(i-f));
+      a[i] = q;
+    }
+    return a;
+  }
+
+}*/
     public static void main(String[] args) {
 
         // read in pitch-duration pairs from standard input
@@ -126,11 +174,12 @@ public static double[] fadeOut(double[] array, int out) {
             double[] a = note(pitch, duration);
             //double[] b = minorChord(pitch,duration);
             //StdAudio.play(a);
-            StdAudio.save("harmonic.wav", a);
+            //StdAudio.save("harmonic.wav", (fadeIn(minorChord(pitch,duration),2)));
             //StdAudio.play(a);
-            //StdAudio.play(majorChord(pitch,duration));
-            StdAudio.play(fadeIn(a,1.5));
-          //  StdAudio.play.majorChord(a);
+            //StdAudio.play(minorChord(pitch,duration));
+             StdAudio.play(fadeIn(minorChord(pitch,duration),1));
+
+           //  StdAudio.play.majorChord(a);
             ///StdAudio.play()
         }
     }
