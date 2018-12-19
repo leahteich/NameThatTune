@@ -116,56 +116,12 @@ public static double[] fadeOut(double[] array, int out) {
     }
     return fadeOutArray;
 } //fade out
-
 public static double[] changeVolume(double[] array, double volume) {
     return MusicTools.scaleArray(array, volume);
 }
 
 
-/*public static double[] clip(double[] array, int out) {
-public static double[] fadeinnote(int pitch, double duration, double fadeloc) {
-    double hz = 440.0 * Math.pow(2, pitch / 12.0);
-    double[] a  = fadeintone(hz, duration, fadeloc);
-    //MusicTools.printArray(a);
-    return (a);
-  }
-  public static double[] fadeintone(double hz, double duration, double fadeloc) {
-    int n = (int) (StdAudio.SAMPLE_RATE * duration);
-    int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
-    double[] a = new double[n+1];
-    for (int i = 0; i <= f; i++) {
-      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(f))*i;
-      //  a[i] = (.1*q)*Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
-      a[i] = q;
 
-    }
-    for (int i = f; i <= n; i++) {
-      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
-    }
-    return a;
-  }
-
-  public static double[] fadeoutnote(int pitch, double duration, double fadeloc) {
-    double hz = 440.0 * Math.pow(2, pitch / 12.0);
-    double[] a  = fadeouttone(hz, duration, fadeloc);
-    //MusicTools.printArray(a);
-    return (a);
-  }
-  public static double[] fadeouttone(double hz, double duration, double fadeloc) {
-    int n = (int) (StdAudio.SAMPLE_RATE * duration);
-    int f = (int) (StdAudio.SAMPLE_RATE * fadeloc);
-    double[] a = new double[n+1];
-    for (int i = 0; i <= f; i++) {
-      a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
-    }
-    for (int i = f; i <= n; i++) {
-      double q = ((Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE))/(n-f))*((n-f)-(i-f));
-      a[i] = q;
-    }
-    return a;
-  }
-
-}*/
     public static void main(String[] args) {
 
         // read in pitch-duration pairs from standard input
