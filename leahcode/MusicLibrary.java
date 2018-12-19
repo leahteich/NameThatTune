@@ -69,20 +69,13 @@ public static double[] trim(double[] array) {
   for (int i = 0; i < newArray.length; i++) {
     newArray[i] = array[leadzeroes];
   }
-
+  return newArray;
 } //trim
 
-public static double[] changeVolume(double[] array, double scalar) {
-  return scaleArray(array, scalar);
-}
-
-public static double[] fade(String direction, double duration) {
+//public static double[] fade(String direction, double duration) {}
 
 
-}
-
-
-public static double[] delay(double seconds, int SAMPLE_RATE, double[] sample) {
+public static double[] rest(int seconds, int SAMPLE_RATE, double[] sample) {
   int blanks = SAMPLE_RATE*seconds;
   double[] delayedArray = new double[blanks + sample.length];
 
@@ -90,10 +83,10 @@ public static double[] delay(double seconds, int SAMPLE_RATE, double[] sample) {
     delayedArray[i] = 0;
   }
   for (int i = blanks; i < delayedArray.length; i++) {
-    delayedArray[i] = sample[i]
+    delayedArray[i] = sample[i-blanks];
   }
   return delayedArray;
-}
+} // adds a rest between each note but not for array of notes
 
 //public static double[] clip(double bound) {}
 
