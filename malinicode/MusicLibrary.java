@@ -118,8 +118,9 @@ public static double[] fadeOut(double[] array, int out) {
 } //fade out
 
 public static double[] changeVolume(double[] array, double volume) {
-    return MusicTools.scale(a, volume);
+    return MusicTools.scaleArray(array, volume);
 }
+
 
 /*public static double[] clip(double[] array, int out) {
 public static double[] fadeinnote(int pitch, double duration, double fadeloc) {
