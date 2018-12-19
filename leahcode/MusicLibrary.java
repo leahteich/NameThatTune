@@ -92,6 +92,7 @@ public static double[] delay(double seconds, int SAMPLE_RATE, double[] sample) {
   for (int i = blanks; i < delayedArray.length; i++) {
     delayedArray[i] = sample[i]
   }
+  return delayedArray;
 }
 
 //public static double[] clip(double bound) {}
