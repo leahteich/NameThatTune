@@ -82,8 +82,17 @@ public static double[] fade(String direction, double duration) {
 }
 
 
-//public static double[] delay(double volume, double duration) {}
+public static double[] delay(double seconds, int SAMPLE_RATE, double[] sample) {
+  int blanks = SAMPLE_RATE*seconds;
+  double[] delayedArray = new double[blanks + sample.length];
 
+  for (int i=0; i<blanks; i++){
+    delayedArray[i] = 0;
+  }
+  for (int i = blanks; i < delayedArray.length; i++) {
+    delayedArray[i] = sample[i]
+  }
+}
 
 //public static double[] clip(double bound) {}
 
