@@ -79,7 +79,6 @@ public static double[] trim(double[] array) {
     newArray[i] = array[leadzeroes];
   }
 
-}
 
 public static double makeHZ(int pitch){
   double hz = 440.0 * Math.pow(2, pitch / 12.0);
