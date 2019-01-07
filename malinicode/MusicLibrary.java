@@ -109,9 +109,9 @@ public static double[] fadeIn(double[] array, int in) {
 
 public static double[] fadeOut(double[] array, int out) {
     int fadeOutDuration = (int) (StdAudio.SAMPLE_RATE * out);
-    double[] fadeOutArray = new double[array.length+1];
-    for (int i =0; i<fadeOutDuration; i++) {
-      fadeOutArray[fadeOutArray.length-i-1]= (array[fadeOutArray.length-i-1]*i)/fadeOutDuration;
+    double[] fadeOutArray = new double[array.length];
+    for (int i =0; i<   fadeOutDuration; i++) {
+      fadeOutArray[fadeOutArray.length-1-i]= array[fadeOutArray.length-1-i]*i/fadeOutDuration;
 //percentage
     }
     return fadeOutArray;
@@ -119,9 +119,13 @@ public static double[] fadeOut(double[] array, int out) {
 public static double[] changeVolume(double[] array, double volume) {
     return MusicTools.scaleArray(array, volume);
 }
+/*public static double[] clip(double[] array){
+  double[] clipArray = new double[array.length];
+  for (int i=0; i <clipArray.length; i++){
 
-
-
+  }
+return clip;
+}*/
     public static void main(String[] args) {
 
         // read in pitch-duration pairs from standard input
@@ -134,7 +138,7 @@ public static double[] changeVolume(double[] array, double volume) {
             //StdAudio.save("harmonic.wav", (fadeIn(minorChord(pitch,duration),2)));
             //StdAudio.play(a);
             //StdAudio.play(minorChord(pitch,duration));
-             StdAudio.play(fadeIn(minorChord(pitch,duration),1));
+             StdAudio.play(fadeOut(minorChord(pitch,duration),1));
 
            //  StdAudio.play.majorChord(a);
             ///StdAudio.play()
