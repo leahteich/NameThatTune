@@ -89,7 +89,7 @@ public static double[] rest(int seconds, int SAMPLE_RATE, double[] sample) {
 } // adds a rest between each note but not for array of notes
 
 //public static double[] clip(double bound) {}
-
+//djoiwjdoaj
 
 public static double makeHZ(int pitch){
   double hz = 440.0 * Math.pow(2, pitch / 12.0);
