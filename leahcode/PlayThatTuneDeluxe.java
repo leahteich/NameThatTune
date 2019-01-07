@@ -3,7 +3,7 @@ public class PlayThatTuneDeluxe {
         while (!StdIn.isEmpty()) {
             int pitch = StdIn.readInt();
             double duration = StdIn.readDouble();
-            double[] a = MusicLibrary.delay(1,44100,MusicLibrary.harmonic(pitch, duration));
+            double[] a = MusicLibrary.harmonic(pitch, duration);
             StdAudio.play(a);
             StdAudio.save("major.wav", a);
         }
