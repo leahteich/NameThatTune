@@ -45,6 +45,15 @@ public static double[] majorChord(int pitch, double duration) {
     return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
 } //majorChord
 
+public static double[] fadeIn(double[] note, double secondsToFade) {
+        double n = (double) StdAudio.SAMPLE_RATE;
+        int length = (int) Math.ceil(n * secondsToFade);
+        double[] finalA = new double[length];
+        for (int i = 0; i < length; i += 1) {
+            finalA[i] = note[i] * ((double) i / (n * secondsToFade));
+        }
+        return finalA;
+    }//fade in
 public static double[] pitch(double hz, double duration) {
     int n = (int) (StdAudio.SAMPLE_RATE * duration);
     double[] a = new double[n+1];
@@ -69,27 +78,7 @@ public static double[] trim(double[] array) {
   for (int i = 0; i < newArray.length; i++) {
     newArray[i] = array[leadzeroes];
   }
-  return newArray;
-} //trim
 
-//public static double[] fade(String direction, double duration) {}
-
-
-public static double[] rest(int seconds, int SAMPLE_RATE, double[] sample) {
-  int blanks = SAMPLE_RATE*seconds;
-  double[] delayedArray = new double[blanks + sample.length];
-
-  for (int i=0; i<blanks; i++){
-    delayedArray[i] = 0;
-  }
-  for (int i = blanks; i < delayedArray.length; i++) {
-    delayedArray[i] = sample[i-blanks];
-  }
-  return delayedArray;
-} // adds a rest between each note but not for array of notes
-
-//public static double[] clip(double bound) {}
-//djoiwjdoaj
 
 public static double makeHZ(int pitch){
   double hz = 440.0 * Math.pow(2, pitch / 12.0);
