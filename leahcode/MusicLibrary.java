@@ -74,7 +74,7 @@ public static double[] trim(double[] array) {
       leadzeroes++;
     }
   }
-  
+
   double[] newArray = new double[array.length-leadzeroes];
   for (int i = 0; i < newArray.length; i++) {
     newArray[i] = array[leadzeroes];

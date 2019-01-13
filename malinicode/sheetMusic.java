@@ -1,4 +1,7 @@
 import java.io.*;
+import java.util.Random;
+
+Random rand = new Random();
 
 public class sheetMusic {
 
@@ -32,9 +35,10 @@ public class sheetMusic {
       int note2 = pickScale[1];
       int note3 = pickScale[2];
 
-      int duration1 = StdRandom.uniform(1,4);
-      int duration2 = StdRandom.uniform(1,4);
-      int duration3 = StdRandom.uniform(1,4);
+			int duration1 = rand.nextInt(4) + 1;
+			int duration2 = rand.nextInt(4) + 1;
+			int duration3 = rand.nextInt(4) + 1;
+
       double[] a = MusicLibrary.majorChord(note1, duration1);
       double[] b = MusicLibrary.majorChord(note2, duration2);
       double[] c = MusicLibrary.majorChord(note3, duration3);
