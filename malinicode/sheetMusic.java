@@ -7,7 +7,7 @@ public class sheetMusic {
     	FileOutputStream f1 = new FileOutputStream("notes"+25+".txt");
     	System.setErr(new PrintStream(f1));
 
-    	int[] scale = pickAScale();
+    	int[] scale = chooseScale();
     	double[] chorus = chorus(scale);
   		double[] verse = verse(scale);
       double[] bridge = bridge(scale);
@@ -17,6 +17,7 @@ public class sheetMusic {
 		StdAudio.play(a);
 
 	}
+<<<<<<< HEAD
 
 
   public static int[] pickAScale() {
@@ -61,3 +62,5 @@ public class sheetMusic {
       double[] array = ArrayTools.concatArray(concat1,conncat1);
       return array;
   }
+=======
+>>>>>>> 7c115df71964619ba183fbbafaacd3d56eacdff2
