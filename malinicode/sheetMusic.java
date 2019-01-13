@@ -7,7 +7,7 @@ public class sheetMusic {
     	FileOutputStream f1 = new FileOutputStream("notes"+25+".txt");
     	System.setErr(new PrintStream(f1));
 
-    	int[] scale = pickAScale();
+    	int[] scale = chooseScale();
     	double[] chorus = chorus(scale);
   		double[] verse = verse(scale);
       double[] bridge = bridge(scale);
@@ -17,34 +17,3 @@ public class sheetMusic {
 		StdAudio.play(a);
 
 	}
-
-
-  public static int[] pickAScale() {
-    int[][] scales;
-
-
-
-  }
-  public static double[] verse(int[] scale) {
-      int[] pickScale = ArrayTools.shuffle(scale);
-
-      int note1 = pickScale[0];
-      int note2 = pickScale[1];
-      int note3 = pickScale[2];
-
-      int duration1 = StdRandom.uniform(1,4);
-      int duration2 = StdRandom.uniform(1,4);
-      int duration3 = StdRandom.uniform(1,4);
-      double[] a = MusicLibrary.majorChord(note1, duration1);
-      double[] b = MusicLibrary.majorChord(note2, duration2);
-      double[] c = MusicLibrary.majorChord(note3, duration3);
-
-      System.out.println("\nChorus:");
-      System.out.println(note1+" "+duration1+" Major");
-      System.out.println(note2+" "+duration2+" Major");
-      System.out.println(note3+" "+duration3+" Major");
-
-      double[] d = ArrayTools.concatenateArray(ArrayTools.concatenateArray(a, b), c);
-      double[] array = ArrayTools.concatenateArray(d,d);
-      return array;
-  }
