@@ -12,7 +12,7 @@ public class sheetMusic {
   		double[] verse = verse(scale);
       double[] bridge = bridge(scale);
 
-		    double[] a = structure(chorus,verse,bridge);
+		    double[] a = musicPlan(chorus,verse,bridge);
 		    StdAudio.save("songnumber"+25+".wav", a);
 		    StdAudio.play(a);
 
@@ -38,7 +38,20 @@ public class sheetMusic {
 
   public static int[] chooseMajor() {
     int[][] scales;
-
+    scales = new int[][] {
+      {3,5,7,8,10,12,14,15},
+      {5,7,9,10,12,14,16,17},
+      {7,9,11,12,14,16,18,19},
+      {8,11,13,14,16,18,20,21},
+      {10,12,14,15,17,19,21,22},
+      {0,2,4,5,7,9,11,12},
+      {2,4,6,7,9,11,13,14},
+      {4,6,8,9,11,13,15,16},
+      {6,8,10,11,13,15,17,18},
+      {9,11,13,14,16,18,20,21},
+      {11,13,15,16,18,20,22,23},
+      {1,3,5,6,8,10,12,13}
+    }
   }
   public static double[] verse(int[] scale) {
       int[] pickScale = scale;
@@ -74,7 +87,7 @@ public class sheetMusic {
       return array;
   }
 
-  public static double[] verse(int[] scale) {
+  public static double[] chorus(int[] scale) {
       int[] pickScale = scale;
   //needrandom
       int note1 = pickScale[0];
@@ -141,25 +154,42 @@ public class sheetMusic {
       double[] array = ArrayTools.concatArray(concat1,conncat1);
       return array;
     }
+    public static double[] notesArray(int[] scale, int verseLength){
+        int [] a = ArrayTools.shuffle(scale);
+        int [] b = ArrayTools.shuffle(scale);
 
-    public static double[] musicPlan(double[] chorus, double[] verse, double bridge) {
-      //double[] array = new double[2];
-      //System.out.println("\nStructure:");
-      /*for (int i = 0; i< 7; i++) {
-        double random = StdRandom.uniform(2);
-        double[] a = new double[2];
-        if (random == 0) {
-          a = chorus;
-          System.out.println("Chorus");
-        } else if (random == 1) {
-          a = verse;
-          System.out.println("Verse");
+        int[] oneRepeat = ArrayTools.concatenateArray(a,b);
+
+        int repetition = (int)(verseLength/StdAudio.SAMPLE_RATE)/5;
+        int[] notes = new int[oneRepeat.length*repetition];
+
+        for(int x=0; x<repetition; x++){
+          for(int y=0; y<oneRepeat.length; y++){
+            notes[x*oneRepeat.length + y] = oneRepeat[y];
+          }
         }
-        array = ArrayTools.concatenateArray(array, a);
-      }
-      double[] faded = MusicLibrary.fadeIn(array, 3);
-      double[] faded2 = MusicLibrary.fadeOut(faded, 3);
-      return faded2;*/
+
+        double[] testA = new double[1];
+        for (int i = 0; i <notes.length; i++) {
+          System.err.println(notes[i]+" 0.5");
+          double[] singleN = MusicLibrary.sinstuff(.5, 440 * Math.pow(2, notes[i] / 12.0));
+          testA = ArrayTools.concatenateArray(testA,singleN);
+        }
+        return testA;
+    }
+
+    public static double[] musicPlan(double[] chorus, double[] verse, double[] bridge) {
+      double[] array = new double[3];
+      array = MusicTools.concatArray(array,verse);
+      array = MusicTools.concatArray(array,chorus);
+      array = MusicTools.concatArray(array,verse);
+      array = MusicTools.concatArray(array,chorus);
+      array = MusicTools.concatArray(array,verse);
+      array = MusicTools.concatArray(array,bridge);
+      array = MusicTools.concatArray(array,chorus);
+      array = MusicTools.concatArray(array,chorus);
+
+      return array;
     }
 
   }
