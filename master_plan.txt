@@ -7,17 +7,17 @@ increase volume as chorus comes to end and suddenly rest for 1-3 seconds
 fade into verse - exact same as 1st and fade out
 
 verse 			18-30		minor		random generation, saved
-	fade out
+	
 chorus			18-30		major
 	rest			1-3
-	fade in
+	
 verse				18-30		minor
-	fade out
+	
 chorus			18-30		major
-	fade into bridge
+	
 verse				18-30		minor
 	rest			1-3
-	fade in
+	
 bridge 			20-30		notes 2x longer, higher volume than verse, new random generation - harmonic
 	fade out
 chorus			18-30		major
