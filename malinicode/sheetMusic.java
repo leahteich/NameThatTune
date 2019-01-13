@@ -62,5 +62,3 @@ public class sheetMusic {
       double[] array = ArrayTools.concatArray(concat1,conncat1);
       return array;
   }
-=======
->>>>>>> 7c115df71964619ba183fbbafaacd3d56eacdff2
