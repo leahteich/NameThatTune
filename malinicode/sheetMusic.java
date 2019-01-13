@@ -17,7 +17,6 @@ public class sheetMusic {
 		StdAudio.play(a);
 
 	}
-<<<<<<< HEAD
 
 
   public static int[] pickAScale() {
