@@ -7,18 +7,18 @@ public class sheetMusic {
     	FileOutputStream f1 = new FileOutputStream("notes"+25+".txt");
     	System.setErr(new PrintStream(f1));
 
-    	int[] scale = chooseScale();
-    	double[] chorus = chorus(scale);
-  		double[] verse = verse(scale);
-      double[] bridge = bridge(scale);
+    	//int[] scale1 = chooseMinorScale();
+      int[] scale2 = chooseMajor();
+    	double[] chorus = chorus(scale2);
+  		double[] verse = verse(scale2);
 
-		    double[] a = musicPlan(chorus,verse,bridge);
+		    double[] a = musicPlan(chorus,verse);
 		    StdAudio.save("songnumber"+25+".wav", a);
 		    StdAudio.play(a);
 
 	}
 
-  public static int[] chooseMinor() {
+  /*public static int[] chooseMinor() {
     int[][] scales;
     scales  = new int[][] {
     {0,2,3,5,7,8,10,12},
@@ -35,7 +35,7 @@ public class sheetMusic {
     {11,13,14,16,18,19,21,23}
     };
   }
-
+*/
   public static int[] chooseMajor() {
     int[][] scales;
     scales = new int[][] {
@@ -51,10 +51,11 @@ public class sheetMusic {
       {9,11,13,14,16,18,20,21},
       {11,13,15,16,18,20,22,23},
       {1,3,5,6,8,10,12,13}
-    }
+    };
+    return scales[3];
   }
-  public static double[] verse(int[] scale) {
-      int[] pickScale = scale;
+  public static double[] verse(int[] scale1) {
+      int[] pickScale = scale1;
 //needrandom
       int note1 = pickScale[0];
       int note2 = pickScale[1];
@@ -77,18 +78,16 @@ public class sheetMusic {
 
       System.out.println("\nVerse:");
       System.out.println(note1+" "+time1+" Minor");
-      System.out.println(note2+" "+time2+" Minor");
-      System.out.println(note3+" "+time3+" Minor");
-      System.out.println(note4+" "+time4+" Minor");
+
   //    System.out.println(note5+" "+time5+" Minor");
 
       double[] concat1 = MusicTools.concatArray(MusicTools.concatArray(a, b), MusicTools.concatArray(c,d));
-      double[] array = ArrayTools.concatArray(concat1,conncat1);
+      double[] array = MusicTools.concatArray(concat1,concat1);
       return array;
   }
 
-  public static double[] chorus(int[] scale) {
-      int[] pickScale = scale;
+  public static double[] chorus(int[] scale2) {
+      int[] pickScale = scale2;
   //needrandom
       int note1 = pickScale[0];
       int note2 = pickScale[1];
@@ -111,18 +110,16 @@ public class sheetMusic {
 
       System.out.println("\nVerse:");
       System.out.println(note1+" "+time1+" Major");
-      System.out.println(note2+" "+time2+" Major");
-      System.out.println(note3+" "+time3+" Major");
-      System.out.println(note4+" "+time4+" Major");
+
   //    System.out.println(note5+" "+time5+" Minor");
 
       double[] concat2 = MusicTools.concatArray(MusicTools.concatArray(a, b), MusicTools.concatArray(c,d));
-      double[] array = ArrayTools.concatArray(concat1,conncat1);
+      double[] array = MusicTools.concatArray(concat2,concat2);
       return array;
   }
 
-  public static double[] bridge(int[] scale) {
-      int[] pickScale = scale;
+  /*public static double[] bridge(int[] scale) {
+      int[] pickScale = choosescale;
   //needrandom
       int note1 = pickScale[0];
       int note2 = pickScale[1];
@@ -177,15 +174,15 @@ public class sheetMusic {
         }
         return testA;
     }
-
-    public static double[] musicPlan(double[] chorus, double[] verse, double[] bridge) {
-      double[] array = new double[3];
+*/
+    public static double[] musicPlan(double[] chorus, double[] verse) {
+      double[] array = new double[7];
       array = MusicTools.concatArray(array,verse);
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,verse);
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,verse);
-      array = MusicTools.concatArray(array,bridge);
+      //array = MusicTools.concatArray(array,bridge);
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,chorus);
 
