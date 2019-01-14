@@ -7,18 +7,19 @@ public class sheetMusic {
     	FileOutputStream f1 = new FileOutputStream("notes"+25+".txt");
     	System.setErr(new PrintStream(f1));
 
-    	//int[] scale1 = chooseMinorScale();
+    	int[] scale1 = chooseMinor();
       int[] scale2 = chooseMajor();
     	double[] chorus = chorus(scale2);
-  		double[] verse = verse(scale2);
+  		double[] verse = verse(scale1);
+			//double[] verse = verse(scale2);
 
 		    double[] a = musicPlan(chorus,verse);
 		    StdAudio.save("songnumber"+25+".wav", a);
 		    StdAudio.play(a);
-
+//why does text file not work
 	}
 
-  /*public static int[] chooseMinor() {
+  public static int[] chooseMinor() {
     int[][] scales;
     scales  = new int[][] {
     {0,2,3,5,7,8,10,12},
@@ -34,8 +35,9 @@ public class sheetMusic {
     {10,12,13,15,17,18,20,22},
     {11,13,14,16,18,19,21,23}
     };
+		return scales[2];
   }
-*/
+
   public static int[] chooseMajor() {
     int[][] scales;
     scales = new int[][] {
@@ -56,28 +58,27 @@ public class sheetMusic {
   }
   public static double[] verse(int[] scale1) {
       int[] pickScale = scale1;
-//needrandom
-      int note1 = pickScale[0];
-      int note2 = pickScale[1];
-      int note3 = pickScale[2];
-      int note4 = pickScale[3];
-//      int note5 = pickScale[4];
+			int note1 = pickScale[StdRandom.uniform(1,8)];
+      int note2 = pickScale[StdRandom.uniform(1,8)];
+      int note3 = pickScale[StdRandom.uniform(1,8)];
+      int note4 = pickScale[StdRandom.uniform(1,8)];
 
 //needrandom
-      int time1 = 3;
-      //int time2 = 3);
-      //int time3 = (20,28);
-    //  int time4 = (20,28);
-    //  int time5 = (20,28);
+      int time1 = StdRandom.uniform(1,3);
+			int time2 = StdRandom.uniform(1,3);
+			int time3 = StdRandom.uniform(1,3);
+			int time4 = StdRandom.uniform(1,3);
 
-      double[] a = MusicLibrary.minorChord(note1, 3);
-      double[] b = MusicLibrary.minorChord(note2, 3);
-      double[] c = MusicLibrary.minorChord(note3, 3);
-      double[] d = MusicLibrary.minorChord(note4, 3);
+
+
+      double[] a = MusicLibrary.minorChord(note1, time1);
+      double[] b = MusicLibrary.minorChord(note2, time2);
+      double[] c = MusicLibrary.minorChord(note3, time3);
+      double[] d = MusicLibrary.minorChord(note4, time4);
 //      double[] e = MusicLibrary.minorChord(note5, time5);
 
       System.out.println("\nVerse:");
-      System.out.println(note1+" "+time1+" Minor");
+      System.out.println(note1+" "+" Minor");
 
   //    System.out.println(note5+" "+time5+" Minor");
 
@@ -90,17 +91,16 @@ public class sheetMusic {
       int[] pickScale = scale2;
   //needrandom
       int note1 = pickScale[0];
-      int note2 = pickScale[1];
-      int note3 = pickScale[2];
-      int note4 = pickScale[3];
+      int note2 = pickScale[3];
+      int note3 = pickScale[6];
+      int note4 = pickScale[1];
   //      int note5 = pickScale[4];
 
   //needrandom
-      int time1 = 3;
-      //int time2 = 3);
-      //int time3 = (20,28);
-    //  int time4 = (20,28);
-    //  int time5 = (20,28);
+    //  int time1 = StdRandom.uniform(1,3);
+			//int time2 = StdRandom.uniform(1,3);
+		//	int time3 = StdRandom.uniform(1,3);
+			//int time4 = StdRandom.uniform(1,3);
 
       double[] a = MusicLibrary.majorChord(note1, 3);
       double[] b = MusicLibrary.majorChord(note2, 3);
@@ -109,7 +109,7 @@ public class sheetMusic {
   //      double[] e = MusicLibrary.minorChord(note5, time5);
 
       System.out.println("\nVerse:");
-      System.out.println(note1+" "+time1+" Major");
+      System.out.println(note1+" "+" Major");
 
   //    System.out.println(note5+" "+time5+" Minor");
 
@@ -150,29 +150,6 @@ public class sheetMusic {
       double[] concat2 = MusicTools.concatArray(MusicTools.concatArray(a, b), MusicTools.concatArray(c,d));
       double[] array = ArrayTools.concatArray(concat1,conncat1);
       return array;
-    }
-    public static double[] notesArray(int[] scale, int verseLength){
-        int [] a = ArrayTools.shuffle(scale);
-        int [] b = ArrayTools.shuffle(scale);
-
-        int[] oneRepeat = ArrayTools.concatenateArray(a,b);
-
-        int repetition = (int)(verseLength/StdAudio.SAMPLE_RATE)/5;
-        int[] notes = new int[oneRepeat.length*repetition];
-
-        for(int x=0; x<repetition; x++){
-          for(int y=0; y<oneRepeat.length; y++){
-            notes[x*oneRepeat.length + y] = oneRepeat[y];
-          }
-        }
-
-        double[] testA = new double[1];
-        for (int i = 0; i <notes.length; i++) {
-          System.err.println(notes[i]+" 0.5");
-          double[] singleN = MusicLibrary.sinstuff(.5, 440 * Math.pow(2, notes[i] / 12.0));
-          testA = ArrayTools.concatenateArray(testA,singleN);
-        }
-        return testA;
     }
 */
     public static double[] musicPlan(double[] chorus, double[] verse) {
