@@ -128,7 +128,9 @@ public class sheetMusic {
       array = MusicTools.concatArray(array,verse);
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,verse);
+
       array = MusicTools.concatArray(array,bridge);
+			
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,chorus);
 
