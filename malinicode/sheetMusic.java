@@ -141,17 +141,16 @@ public class sheetMusic {
   //      double[] e = MusicLibrary.minorChord(note5, time5);
 
       System.out.println("\nVerse:");
-      System.out.println(note1+" "+time1+" Major");
-      System.out.println(note2+" "+time2+" Major");
-      System.out.println(note3+" "+time3+" Major");
-      System.out.println(note4+" "+time4+" Major");
+      System.out.println(note1+" "+" Major");
+      System.out.println(note2+" "+" Major");
+      System.out.println(note3+" "+" Major");
+      System.out.println(note4+" "+" Major");
   //    System.out.println(note5+" "+time5+" Minor");
 
       double[] concat2 = MusicTools.concatArray(MusicTools.concatArray(a, b), MusicTools.concatArray(c,d));
-      double[] array = ArrayTools.concatArray(concat1,conncat1);
+      double[] array = ArrayTools.concatArray(concat1,concat1);
       return array;
-    }
-*/
+    }*/
     public static double[] musicPlan(double[] chorus, double[] verse) {
       double[] array = new double[7];
       array = MusicTools.concatArray(array,verse);
