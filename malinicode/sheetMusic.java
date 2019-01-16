@@ -11,9 +11,9 @@ public class sheetMusic {
       int[] scale2 = chooseMajor();
     	double[] chorus = chorus(scale2);
   		double[] verse = verse(scale1);
-			//double[] verse = verse(scale2);
+			double[] bridge = bridge(scale2);
 
-		    double[] a = musicPlan(chorus,verse);
+		    double[] a = musicPlan(chorus,verse,bridge);
 		    StdAudio.save("songnumber"+25+".wav", a);
 		    StdAudio.play(a);
 //why does text file not work
@@ -118,17 +118,17 @@ public class sheetMusic {
       return array;
   }
 
-  /*public static double[] bridge(int[] scale) {
-      int[] pickScale = choosescale;
+  public static double[] bridge(int[] scale2) {
+      int[] pickScale = scale2;
   //needrandom
-      int note1 = pickScale[0];
-      int note2 = pickScale[1];
-      int note3 = pickScale[2];
-      int note4 = pickScale[3];
+      int note1 = pickScale[1];
+      int note2 = pickScale[4];
+      int note3 = pickScale[3];
+      int note4 = pickScale[2];
   //      int note5 = pickScale[4];
 
   //needrandom
-      int time1 = 3;
+    //  int time1 = 3;
       //int time2 = 3);
       //int time3 = (20,28);
     //  int time4 = (20,28);
@@ -140,25 +140,25 @@ public class sheetMusic {
       double[] d = MusicLibrary.majorChord(note4, 3);
   //      double[] e = MusicLibrary.minorChord(note5, time5);
 
-      System.out.println("\nVerse:");
+    /*  System.out.println("\nVerse:");
       System.out.println(note1+" "+" Major");
       System.out.println(note2+" "+" Major");
       System.out.println(note3+" "+" Major");
       System.out.println(note4+" "+" Major");
-  //    System.out.println(note5+" "+time5+" Minor");
+  //    System.out.println(note5+" "+time5+" Minor");*/
 
-      double[] concat2 = MusicTools.concatArray(MusicTools.concatArray(a, b), MusicTools.concatArray(c,d));
-      double[] array = ArrayTools.concatArray(concat1,concat1);
+      double[] concat3 = MusicTools.concatArray(MusicTools.concatArray(a, b), MusicTools.concatArray(c,d));
+      double[] array = MusicTools.concatArray(concat3,concat3);
       return array;
-    }*/
-    public static double[] musicPlan(double[] chorus, double[] verse) {
-      double[] array = new double[7];
+    }
+    public static double[] musicPlan(double[] chorus, double[] verse, double[] bridge) {
+      double[] array = new double[8];
       array = MusicTools.concatArray(array,verse);
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,verse);
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,verse);
-      //array = MusicTools.concatArray(array,bridge);
+      array = MusicTools.concatArray(array,bridge);
       array = MusicTools.concatArray(array,chorus);
       array = MusicTools.concatArray(array,chorus);
 
