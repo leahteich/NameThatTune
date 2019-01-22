@@ -21,13 +21,16 @@ public class sheetMusic {
 
 		   double[] a = playFullSong(chorus,verse,bridge);
 
+			 MyRunnable myRunnable = new MyRunnable(10);
+			 Thread t = new Thread(myRunnable);
+				StdAudio.play(a);
+			  t.start();
 //https://stackoverflow.com/questions/1994255/how-to-write-console-output-to-a-txt-file
 		   StdAudio.save("song"+songNum+".wav", a);
 			 System.setOut(out);
 
-		   StdAudio.play(a);
 		}
-
+//https://stackoverflow.com/questions/22393858/java-simple-animation-with-threads
   public static int[] chooseMinor() {
     int[][] scales;
     scales  = new int[][] {
@@ -89,12 +92,6 @@ public class sheetMusic {
 
 				double[] noteToPlay = MusicLibrary.minorChord(notes[i], times[i]);
 
-				StdDraw.clear();
-				StdDraw.setPenColor(StdDraw.BOOK_RED);
-				StdDraw.setPenRadius(.02);
-				StdDraw.circle(.8, .8, times[i]);
-
-
 				concatOrig = MusicTools.concatArray(concatOrig, noteToPlay);
 			}
 
@@ -121,11 +118,6 @@ public class sheetMusic {
 				System.out.println(currentNote + " " + currentTime);
 
 				double[] noteToPlay = MusicLibrary.majorChord(notes[i], times[i]);
-
-				StdDraw.clear();
-				StdDraw.setPenColor(StdDraw.MAGENTA);
-				StdDraw.setPenRadius(.02);
-				StdDraw.circle(.1, .2, times[i]);
 
 				concatOrig = MusicTools.concatArray(concatOrig, noteToPlay);
 			}
