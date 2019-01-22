@@ -11,6 +11,7 @@ public class sheetMusic {
 
 			PrintStream out = new PrintStream(new FileOutputStream("song"+songNum+".txt"));
 
+			System.setOut(out);
 
     	int[] scale1 = chooseMinor();
       int[] scale2 = chooseMajor();
@@ -23,7 +24,6 @@ public class sheetMusic {
 
 //https://stackoverflow.com/questions/1994255/how-to-write-console-output-to-a-txt-file
 		   StdAudio.save("song"+songNum+".wav", a);
-			 System.setOut(out);
 
 		   StdAudio.play(a);
 		}
