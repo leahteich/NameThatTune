@@ -11,7 +11,7 @@ public class MyRunnable implements Runnable {
 			int pitch = StdIn.readInt();
 			double duration = StdIn.readDouble();
 
-			StdDraw.circle(pitch, 50+duration, 50);
+			StdDraw.circle(.1, .1, .1);
 			StdDraw.setPenColor(StdDraw.BOOK_RED);
 			StdDraw.setPenRadius(.02);
     }

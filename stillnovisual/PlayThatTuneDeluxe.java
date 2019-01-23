@@ -35,17 +35,17 @@ public class PlayThatTuneDeluxe {
             c[i] = a[i]*awt + b[i]*bwt;
         }
         return c;
-    } 
+    }
 
     // create a pure tone of the given frequency for the given duration
-    public static double[] tone(double hz, double duration) { 
+    public static double[] tone(double hz, double duration) {
         int n = (int) (StdAudio.SAMPLE_RATE * duration);
         double[] a = new double[n+1];
         for (int i = 0; i <= n; i++) {
             a[i] = Math.sin(2 * Math.PI * i * hz / StdAudio.SAMPLE_RATE);
         }
-        return a; 
-    } 
+        return a;
+    }
 
     // create a note with harmonics of the given pitch and duration
     // (where 0 = concert A)
@@ -67,8 +67,15 @@ public class PlayThatTuneDeluxe {
             int pitch = StdIn.readInt();
             double duration = StdIn.readDouble();
             double[] a = note(pitch, duration);
+
+            MyRunnable myRunnable = new MyRunnable(10);
+                   Thread t = new Thread(myRunnable);
+                   t.start();
+                   
             StdAudio.play(a);
-            StdAudio.save("harmonic.wav", a);
+
+
+            //StdAudio.save("harmonic.wav", a);
         }
-    } 
-} 
+    }
+}
