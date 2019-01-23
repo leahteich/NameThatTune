@@ -81,9 +81,9 @@ public static double[] fadeIn(double[] array, int seconds) {
     double[] fadedArray = new double[array.length];
      int length = (int) (StdAudio.SAMPLE_RATE * seconds);
 
-     for (int i = 0; i < length; i++)
+     for (int i = 0; i < length; i++) {
        fadedArray[i]= array[i]*i/length;
-
+     }
      return fadedArray;
 
    }
@@ -91,10 +91,9 @@ public static double[] fadeIn(double[] array, int seconds) {
    public static double[] fadeOut(double[] array, int seconds) {
      double[] fadedArray = new double[array.length];
      int length = (int) (StdAudio.SAMPLE_RATE * seconds);
-
-     for (int i =0; i < length; i++)
+     for (int i =0; i < length; i++) {
        fadedArray[array.length-i-1]= array[array.length-i-1]*i/length;
-
+     }
      return fadedArray;
    }
 
