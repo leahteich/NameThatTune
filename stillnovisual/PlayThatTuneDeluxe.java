@@ -68,6 +68,10 @@ public class PlayThatTuneDeluxe {
             double duration = StdIn.readDouble();
             int type = StdIn.readInt();
 
+            MyRunnable myRunnable = new MyRunnable(10);
+             Thread t = new Thread(myRunnable);
+               t.start();
+
             if (type == 1) {
               double[] a = MusicLibrary.majorChord(pitch, duration);
               StdAudio.play(a);
@@ -82,10 +86,6 @@ public class PlayThatTuneDeluxe {
               double[] a = MusicLibrary.harmonic(pitch, duration);
               StdAudio.play(a);
             }
-
-//            MyRunnable myRunnable = new MyRunnable(10);
-//                   Thread t = new Thread(myRunnable);
-//                   t.start();
             //StdAudio.save("harmonic.wav", a);
         }
     }
