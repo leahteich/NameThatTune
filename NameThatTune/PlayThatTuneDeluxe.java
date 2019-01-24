@@ -467,6 +467,11 @@ public class PlayThatTuneDeluxe {
              }
              StdAudio.play(a);
             }
+
+            if (type==4) {
+              double[] a = MusicLibrary.changeVolume(MusicLibrary.minorChord(pitch, duration), 0);
+              StdAudio.play(a);
+            }
             //StdAudio.save("harmonic.wav", a);
         }
     }

@@ -11,7 +11,7 @@ each note is random from major scale, however. This is same scale as chorus.
 * We generate a txt file that denotes pitch, duration, and type (1 = major, 2 = minor, 3 = harmonic)
 * This txt file is played in PlayThatTuneDeluxe.java, where animation is generated.
 * The animation is designed to look like a piano. When a note is within a certain pitch on piano,
-it lights up notes around it. The animation stays for the duration of the ntoe. 
+it lights up notes around it. The animation stays for the duration of the ntoe.
 
 */
 
@@ -167,13 +167,26 @@ public class sheetMusic {
       return concatOrig;
     }
 
+		public static double[] rest(double length) {
+	    double[] restArray = new double[(int)(length*StdAudio.SAMPLE_RATE)];
+			for (int i=0; i < restArray.length; i++) {
+				restArray[i] = 0;
+			}
+			System.out.println(1 + " " + length + " 4");
+			return restArray;
+	   }
 
 	public static void generateText(int[] scale1, int[] scale2) {
 		verse(scale1);
+		rest(StdRandom.uniform(1,2));
 		chorus(scale2);
+		rest(StdRandom.uniform(1,2));
 		verse(scale1);
+		rest(StdRandom.uniform(1,2));
 		chorus(scale2);
+		rest(StdRandom.uniform(1,2));
 		verse(scale1);
+		rest(StdRandom.uniform(1,2));
 		bridge(scale2);
 		chorus(scale2);
 		chorus(scale2);
