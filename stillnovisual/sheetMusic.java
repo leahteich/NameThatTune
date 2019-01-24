@@ -82,7 +82,7 @@ public class sheetMusic {
 
 			for (int i = 0; i < noteNumber; i++) {
 				notes[i] = pickScale[StdRandom.uniform(0,4)];
-				times[i] = StdRandom.uniform(.1,.5);
+				times[i] = StdRandom.uniform(.3,.8);
 
 				String currentNote = Integer.toString(notes[i]);
 				String currentTime = Double.toString(times[i]);
