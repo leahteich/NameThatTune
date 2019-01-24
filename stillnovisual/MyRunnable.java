@@ -10,7 +10,100 @@ public class MyRunnable implements Runnable {
 
 			int pitch = StdIn.readInt();
 			double duration = StdIn.readDouble();
-           StdDraw.square(.05,.5,.1);
+
+      StdDraw.setPenRadius();
+      StdDraw.filledSquare(.5,.5,.3);
+      StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+
+ if (pitch<1||pitch==1||pitch>1&&pitch<3){
+   StdDraw.setPenRadius();
+   StdDraw.filledSquare(.5,.5,.3);
+   StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+
+ }
+
+ else if(pitch==3||pitch>3&&pitch<5){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.BOOK_RED);
+   StdDraw.filledSquare(.5,.5,.3);
+ }
+
+ else if(pitch==5||pitch>5&&pitch<7){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
+   StdDraw.filledSquare(.5,.5,.3);
+ }
+
+ else if(pitch==7||pitch>7&&pitch<9){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.BLACK);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+ else if(pitch==9||pitch>9&&pitch<11){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.YELLOW);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+ else if(pitch==11||pitch>11&&pitch<13){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.ORANGE);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+ else if(pitch==13||pitch>13&&pitch<15){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.WHITE);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+ else if(pitch==15||pitch>15&&pitch<17){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.GREEN);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+ else if(pitch==17||pitch>17&&pitch<19){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.PINK);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+ else if(pitch==19||pitch>19&&pitch<21){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.GRAY);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+ else if(pitch==21||pitch>21&&pitch<23){
+   StdDraw.setPenRadius();
+
+   StdDraw.setPenColor(StdDraw.MAGENTA);
+   StdDraw.filledSquare(.5,.5,.3);
+
+ }
+
+
+
+
+           /*StdDraw.square(.05,.5,.1);
            StdDraw.square(.1,.5,.1);
            StdDraw.square(.15,.5,.1);
            StdDraw.square(.2,.5,.1);
@@ -27,79 +120,89 @@ public class MyRunnable implements Runnable {
            StdDraw.square(.75,.5,.1);
            StdDraw.square(.8,.5,.1);
            StdDraw.square(.85,.5,.1);
-           StdDraw.square(.9,.5,.1);
+           StdDraw.square(.9,.5,.1);*/
+          /* StdDraw.square(.1,.5,.2);
+           StdDraw.square(.2,.5,.2);
+           StdDraw.square(.3,.5,.2);
+           StdDraw.square(.4,.5,.2);
+           StdDraw.square(.5,.5,.2);
+           StdDraw.square(.6,.5,.2);
+           StdDraw.square(.7,.5,.2);
+           StdDraw.square(.8,.5,.2);
+           StdDraw.square(.9,.5,.2);
 
-      if (pitch<1){
+      if (pitch<1&&pitch<3){
         StdDraw.filledSquare(.05,.5,.1);
+        StdDraw.clear();
       }
 
-      else if(pitch==1||pitch>1&&pitch<2){
+      else if(pitch==3||pitch>3&&pitch<5){
         StdDraw.filledSquare(.1,.5,.1);
+        StdDraw.clear();
       }
 
-      else if(pitch==2||pitch>2&&pitch<3){
+      else if(pitch==5||pitch>5&&pitch<7){
         StdDraw.filledSquare(.15,.5,.1);
+        StdDraw.clear();
       }
 
-      else if(pitch==3||pitch>3&&pitch<4){
+      else if(pitch==7||pitch>7&&pitch<9){
         StdDraw.filledSquare(.2,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==4||pitch>4&&pitch<5){
+      else if(pitch==9||pitch>9&&pitch<11){
         StdDraw.filledSquare(.25,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==5||pitch>5&&pitch<6){
+      else if(pitch==11||pitch>11&&pitch<13){
         StdDraw.filledSquare(.3,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==6||pitch>6&&pitch<7){
+      else if(pitch==13||pitch>13&&pitch<15){
         StdDraw.filledSquare(.35,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==7||pitch>7&&pitch<8){
+      else if(pitch==15||pitch>15&&pitch<17){
         StdDraw.filledSquare(.4,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==8||pitch>8&&pitch<9){
+      else if(pitch==17||pitch>17&&pitch<19){
         StdDraw.filledSquare(.45,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==9||pitch>9&&pitch<10){
+      else if(pitch==19||pitch>19&&pitch<21){
         StdDraw.filledSquare(.5,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==10||pitch>10&&pitch<11){
+      else if(pitch==21||pitch>21&&pitch<23){
         StdDraw.filledSquare(.55,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==11||pitch>11&&pitch<12){
+
+      else if(pitch==23||pitch>23&&pitch<100){
         StdDraw.filledSquare(.6,.5,.1);
+        StdDraw.clear();
+
       }
 
-      else if(pitch==12||pitch>12&&pitch<13){
-        StdDraw.filledSquare(.65,.5,.1);
-      }
 
-      else if(pitch==13||pitch>13&&pitch<14){
-        StdDraw.filledSquare(.7,.5,.1);
-      }
 
-      else if(pitch==14||pitch>14&&pitch<15){
-        StdDraw.filledSquare(.75,.5,.1);
-      }
-
-      else if(pitch==15||pitch>15&&pitch<16){
-        StdDraw.filledSquare(.8,.5,.1);
-      }
-
-      else if(pitch==16||pitch>16&&pitch<17){
-        StdDraw.filledSquare(.85,.5,.1);
-      }
-
-      else if(pitch==16||pitch>17&&pitch<50){
-        StdDraw.filledSquare(.9,.5,.1);
-      }
 
 
 

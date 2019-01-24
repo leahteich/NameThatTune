@@ -66,13 +66,11 @@ public class PlayThatTuneDeluxe {
         while (!StdIn.isEmpty()) {
             int pitch = StdIn.readInt();
             double duration = StdIn.readDouble();
-            int type = StdIn.readInt();
+        double[] a = note(pitch, duration);
 
-            MyRunnable myRunnable = new MyRunnable(10);
-             Thread t = new Thread(myRunnable);
-               t.start();
+            //int type = StdIn.readInt();
 
-            if (type == 1) {
+            /*if (type == 1) {
               double[] a = MusicLibrary.majorChord(pitch, duration);
               StdAudio.play(a);
 
@@ -85,7 +83,12 @@ public class PlayThatTuneDeluxe {
             if (type == 3) {
               double[] a = MusicLibrary.harmonic(pitch, duration);
               StdAudio.play(a);
-            }
+            }*/
+
+   MyRunnable myRunnable = new MyRunnable(10);
+Thread t = new Thread(myRunnable);
+  t.start();
+
             //StdAudio.save("harmonic.wav", a);
         }
     }
