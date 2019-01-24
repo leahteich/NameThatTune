@@ -9,7 +9,7 @@ public class sheetMusic {
 
 			int songNum = StdRandom.uniform(0,10000);
 
-			PrintStream out = new PrintStream(new FileOutputStream("song"+songNum+".txt"));
+			PrintStream out = new PrintStream(new FileOutputStream("song.txt"));
 
 			System.setOut(out);
 
@@ -22,12 +22,12 @@ public class sheetMusic {
   		double[] verse = verse(scale1);
 			double[] bridge = bridge(scale1);
 
-		  double[] a = playFullSong(chorus, verse, bridge);
+		  double[] a = MusicLibrary.fadeIn(playFullSong(chorus, verse, bridge),5);
 
 //https://stackoverflow.com/questions/1994255/how-to-write-console-output-to-a-txt-file
 		   StdAudio.save("song"+songNum+".wav", a);
 
-		   //StdAudio.play(a);
+		  // StdAudio.play(a);
 		}
 
   public static int[] chooseMinor() {
@@ -67,6 +67,7 @@ public class sheetMusic {
     };
 
     return MusicLibrary.shuffle(scales[StdRandom.uniform(0,12)]);
+		//even though it says musiclibrary is library for shuffle, it's really the method from stdrandom...
 
   }
 
@@ -86,7 +87,7 @@ public class sheetMusic {
 				String currentNote = Integer.toString(notes[i]);
 				String currentTime = Double.toString(times[i]);
 
-				System.out.println(currentNote + " " + currentTime);
+				System.out.println(currentNote + " " + currentTime + " 2");
 
 				double[] noteToPlay = MusicLibrary.minorChord(notes[i], times[i]);
 
@@ -113,7 +114,7 @@ public class sheetMusic {
 				String currentNote = Integer.toString(notes[i]);
 				String currentTime = Double.toString(times[i]);
 
-				System.out.println(currentNote + " " + currentTime);
+				System.out.println(currentNote + " " + currentTime + " 1");
 
 				double[] noteToPlay = MusicLibrary.majorChord(notes[i], times[i]);
 
@@ -139,7 +140,7 @@ public class sheetMusic {
 				String currentNote = Integer.toString(notes[i]);
 				String currentTime = Double.toString(time1);
 
-				System.out.println(currentNote + " " + currentTime);
+				System.out.println(currentNote + " " + currentTime + " 3");
 
 				double[] noteToPlay = MusicLibrary.harmonic(notes[i], time1);
 
