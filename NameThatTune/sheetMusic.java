@@ -178,15 +178,15 @@ public class sheetMusic {
 
 	public static void generateText(int[] scale1, int[] scale2) {
 		verse(scale1);
-		rest(StdRandom.uniform(1,2));
+		rest(StdRandom.uniform(.5,1));
 		chorus(scale2);
-		rest(StdRandom.uniform(1,2));
+		rest(StdRandom.uniform(.5,1));
 		verse(scale1);
-		rest(StdRandom.uniform(1,2));
+		rest(StdRandom.uniform(.5,1));
 		chorus(scale2);
-		rest(StdRandom.uniform(1,2));
+		rest(StdRandom.uniform(.5, 1));
 		verse(scale1);
-		rest(StdRandom.uniform(1,2));
+		rest(StdRandom.uniform(.5,1));
 		bridge(scale2);
 		chorus(scale2);
 		chorus(scale2);
