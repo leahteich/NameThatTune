@@ -88,6 +88,7 @@ public class PlayThatTuneDeluxe {
    MyRunnable myRunnable = new MyRunnable(10);
 Thread t = new Thread(myRunnable);
   t.start();
+  StdAudio.play(a);
 
             //StdAudio.save("harmonic.wav", a);
         }
