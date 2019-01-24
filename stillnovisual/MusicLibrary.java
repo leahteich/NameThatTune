@@ -1,19 +1,14 @@
-//harmonic – adds both a high and a low octave to a root note
-//minorChord- forms a minor chord around a root note
-//majorChord- forms a major chord around a root note
-//pitch- translates one note from your sheet music into a “sine wave”
-//sum- adds two sine waves
-//trim - removes leading and trailing 0’s from your array
-//delay- repeats a tone based on an echo volume and time interval
-//changeVolume- scales the amplitude of the tone according to a decimal (i.e .80 or 1.20)
-//fade- scales the amplitude of the first/last n seconds from 0 to usual value (or vice versa) depending on parameter: “In”, “Out”. Feel free to use either a linear or logarithmic fade pattern.
-//clip- establishes a max/min for the amplitude of a sound wave. Values that exceed the boundaries of the range are replaced with the max/min
-
-
 public class MusicLibrary {
-
-//this is the shuffle from stdrandom but i changed it to have a return type because it wasn't working before
-public static int[] shuffle(int[] a) {
+  /**
+  *<h1> Shuffle the contents of an array</h1>
+  * This method is from the StdRandom library, and it randomly shuffles  the contents of a given array
+  *
+  *@author    Robert Sedgewick
+  *@author    Kevin Wayne
+  *@param     a, an array of integer values to be shuffled
+  *@return    a, the shuffled array
+  **/
+  public static int[] shuffle(int[] a) {
       if (a == null) throw new IllegalArgumentException("argument array is null");
       int n = a.length;
       for (int i = 0; i < n; i++) {
@@ -24,11 +19,29 @@ public static int[] shuffle(int[] a) {
       }
       return a;
   }
-
+  /**
+  *<h1> Change the volume of music</h1>
+  * This scales an array of values representing music
+  *
+  *@author    Malini Kundamal
+  *@author    Leah Teichholtz
+  *@param     array, an array of double values
+  *@param     volume, a double to scale volume by
+  *@return    the new array with higher or lower volume
+  **/
 public static double[] changeVolume(double[] array, double volume) {
        return MusicTools.scaleArray(array, volume);
      }
-
+/**
+*<h1> Create a harmonic chord</h1>
+* This adds the lower octave and the higher octave of a root note
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     pitch, an int representing the hZ
+*@param     duration, a double, the time to hold a note
+*@return    the new harmonic chord
+**/
 public static double[] harmonic(int pitch, double duration) {
   double hz = 440.0 * Math.pow(2, pitch / 12.0);
   double[] a  = pitch(hz, duration);
@@ -39,6 +52,17 @@ public static double[] harmonic(int pitch, double duration) {
   return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
 }
 
+/**
+*<h1> Delay an array!</h1>
+* This delays a section of music to create an echo effect.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     a, the original array to be delayed
+*@param     volume, the new volume of the echoed array
+*@param     seconds, the time by which to delay the original array
+*@return    the new array which includes the echo
+**/
 public static double[] delay(double[] a, double volume, double seconds){
   int time = (int) (StdAudio.SAMPLE_RATE*seconds);
   double[] delayed = new double[a.length+time];
@@ -54,6 +78,17 @@ public static double[] delay(double[] a, double volume, double seconds){
   return MusicTools.weightedAddArray(a, MusicTools.scaleArray(delayed, volume), .5, .5);
 }
 
+
+/**
+*<h1> Fade in some music!</h1>
+* This fades in an array, so the volume becomes increasingly louder.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     array, the original array of doubles without the fade filter
+*@param     seconds, the integer time over which to fade in
+*@return    faded, the array of double values with the fade in effect
+**/
 public static double[] fadeIn(double[] array, int seconds){
   int time = StdAudio.SAMPLE_RATE*seconds;
   double [] faded = new double [array.length];
@@ -66,6 +101,16 @@ public static double[] fadeIn(double[] array, int seconds){
   return faded;
 }
 
+/**
+*<h1> Fade out some music!</h1>
+* This fades out an array, so the volume becomes increasingly quieter.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     array, the original array of doubles without the fade filter
+*@param     seconds, the integer time over which to fade out
+*@return    faded, the array of double values with the fade out effect
+**/
 public static double[] fadeOut(double[] array, int seconds){
   int time = StdAudio.SAMPLE_RATE*seconds;
   double [] faded = new double [array.length];
@@ -79,6 +124,16 @@ public static double[] fadeOut(double[] array, int seconds){
   return faded;
 }
 
+/**
+*<h1> Play a minor chord!</h1>
+* This creates a minor chord given a root note.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     pitch, the int value to be the root note of the chord
+*@param     duration, the time to play the minor chord
+*@return    the minor chord
+**/
 public static double[] minorChord(int pitch, double duration) {
     double hz = 440.0 * Math.pow(2, pitch / 12.0);
     double m = 440.0 * Math.pow(2, (pitch + 3) / 12.0);
@@ -90,6 +145,16 @@ public static double[] minorChord(int pitch, double duration) {
     return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
 } //minorChord
 
+/**
+*<h1> Play a major chord!</h1>
+* This creates a major chord given a root note.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     pitch, the int value to be the root note of the chord
+*@param     duration, the time to play the major chord
+*@return    the major chord
+**/
 public static double[] majorChord(int pitch, double duration) {
     double hz = 440.0 * Math.pow(2, pitch / 12.0);
     double m = 440.0 * Math.pow(2, (pitch + 4) / 12.0);
@@ -101,6 +166,16 @@ public static double[] majorChord(int pitch, double duration) {
     return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
 } //majorChord
 
+/**
+*<h1> Play a pitch!</h1>
+* This creates a pitch given the hz and duration.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     hz, the double to be played
+*@param     duration, the time to play the pitch for
+*@return    a, the pitch
+**/
 public static double[] pitch(double hz, double duration) {
     int n = (int) (StdAudio.SAMPLE_RATE * duration);
     double[] a = new double[n+1];
@@ -110,10 +185,34 @@ public static double[] pitch(double hz, double duration) {
     return a;
 } //pitch
 
+/**
+*<h1> Sum notes!</h1>
+* This performs weighted addition of notes.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     a, an array of double values to be summed
+*@param     b, an array of double values to be summed
+*@param     awt, the double to scale a by
+*@param     bwt, the double to scale b by
+*@return    the newly summed notes
+**/
 public static double[] sum(double[] a, double[] b, double awt, double bwt) {
   return MusicTools.weightedAddArray(a, b, awt, bwt);
 } //sum
 
+
+/**
+*<h1> Clip a song!</h1>
+* This clips a portion of audio so it can't go higher or lower than a certain point.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     array, the original array of double values to be clipped
+*@param     max, a double, the maximum value
+*@param     min, a double, the minimum value
+*@return    the clipped array
+**/
 public static double[] clip(double[] array, double max, double min) {
   for (int i = 0; i < array.length; i++) {
   if (array[i] >= max) {
@@ -126,19 +225,36 @@ public static double[] clip(double[] array, double max, double min) {
   return array;
 }
 
-
+/**
+*<h1> Trim zeroes!</h1>
+* This trims an array of leading and trailing zeroes.
+*
+*@author    Malini Kundamal
+*@author    Leah Teichholtz
+*@param     array, the original array of double values to be trimmed
+*@return    trimmed, the array of double values without leading or trailing zeroes
+**/
 public static double[] trim(double[] array) {
-  int leadzeroes = 0;
-  for (int i = 0; i < array.length; i++) {
-    if (array[i]==0) {
-      leadzeroes++;
-    }
+  int length = array.length;
+  int start = 0;
+  for (int i = 0; i < length; i++) {
+    if (array[i] == 0)
+      start = i; //if it is 0, record place of 0 and keep going
+    else
+      length = i; //if its not 0, stop by making length and i the same
+  }
+  int end = 0;
+  length = 0;
+  for (int y = array.length-1; y > length; y--) {
+    if (array[y]==0)
+      end = y;
+    else
+      length = y;
   }
 
-  double[] newArray = new double[array.length-leadzeroes];
-  for (int i = 0; i < newArray.length; i++) {
-    newArray[i] = array[leadzeroes];
+  double[] trimmed = MusicTools.copyArray(array,start,end); //then copy inbtwn these indices
+  return trimmed;
+
   }
-  return newArray;
-}
+
 }
