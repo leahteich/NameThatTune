@@ -1,4 +1,3 @@
-
 //harmonic – adds both a high and a low octave to a root note
 //minorChord- forms a minor chord around a root note
 //majorChord- forms a major chord around a root note
@@ -30,21 +29,6 @@ public static double[] changeVolume(double[] array, double volume) {
        return MusicTools.scaleArray(array, volume);
      }
 
-public static double[] delay(double[] array, int interval, int volume, double duration){
-   	int length = (int) (StdAudio.SAMPLE_RATE * duration);
-   	int volumeInterval = volume/interval;
-    double[] delayedArray = new double[interval*array.length+interval*length];
-
-   	for(int x = 0; x < interval; x++){
-   		double[] c = changeVolume(array, volume-volumeInterval*x);
-   		for (int i = 0; i<c.length; i++)
-   			delayedArray[i+x*(c.length+length)] = c[i]; //repeats this tone
-   		for(int j=c.length; j<c.length+length; j++)
-   			delayedArray[x*(c.length+length)+j] = 0;
-   	}
-     	return delayedArray;
-  }
-
 public static double[] harmonic(int pitch, double duration) {
   double hz = 440.0 * Math.pow(2, pitch / 12.0);
   double[] a  = pitch(hz, duration);
@@ -53,6 +37,46 @@ public static double[] harmonic(int pitch, double duration) {
   double[] h  = MusicTools.weightedAddArray(hi, lo, 0.5, 0.5);
 
   return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
+}
+
+public static double[] delay(double[] a, double volume, double seconds){
+  int time = (int) (StdAudio.SAMPLE_RATE*seconds);
+  double[] delayed = new double[a.length+time];
+
+  for(int i = 0; i < time; i++) {
+    delayed[i] = 0;
+  }
+
+  for(int i = time; i < a.length+time; i++) {
+    delayed[i] = a[i-time];
+  }
+
+  return MusicTools.weightedAddArray(a, MusicTools.scaleArray(delayed, volume), .5, .5);
+}
+
+public static double[] fadeIn(double[] array, int seconds){
+  int time = StdAudio.SAMPLE_RATE*seconds;
+  double [] faded = new double [array.length];
+  for (int i = 0;i<time;i++) {
+    faded[i] = ((array[i])*((float)i)/time);
+  }
+  for (int i = time; i < array.length; i++) {
+    faded[i] = array[i];
+  }
+  return faded;
+}
+
+public static double[] fadeOut(double[] array, int seconds){
+  int time = StdAudio.SAMPLE_RATE*seconds;
+  double [] faded = new double [array.length];
+
+  for (int i = array.length-1; i > (array.length-1-time); i--) {
+    faded[i] = (array[i]*(((float)array.length-i-1)/time));
+  }
+  for (int i = array.length-time-1; i > -1; i--) {
+    faded[i] = array[i];
+  }
+  return faded;
 }
 
 public static double[] minorChord(int pitch, double duration) {
@@ -76,26 +100,6 @@ public static double[] majorChord(int pitch, double duration) {
     double[] h  = MusicTools.weightedAddArray(mid, hi, 0.5, 0.5);
     return MusicTools.weightedAddArray(a, h, 0.5, 0.5);
 } //majorChord
-
-public static double[] fadeIn(double[] array, int seconds) {
-    double[] fadedArray = new double[array.length];
-     int length = (int) (StdAudio.SAMPLE_RATE * seconds);
-
-     for (int i = 0; i < length; i++) {
-       fadedArray[i]= array[i]*i/length;
-     }
-     return fadedArray;
-
-   }
-
-   public static double[] fadeOut(double[] array, int seconds) {
-     double[] fadedArray = new double[array.length];
-     int length = (int) (StdAudio.SAMPLE_RATE * seconds);
-     for (int i =0; i < length; i++) {
-       fadedArray[array.length-i-1]= array[array.length-i-1]*i/length;
-     }
-     return fadedArray;
-   }
 
 public static double[] pitch(double hz, double duration) {
     int n = (int) (StdAudio.SAMPLE_RATE * duration);
