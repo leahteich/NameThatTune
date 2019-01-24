@@ -1,6 +1,22 @@
+/*
+Malini Kundamal and Leah Teichholtz NameThatTune, Unit 3
+Advanced CS I - Mr. Gohde - 1/23/2019
+
+OUR STRATEGY FOR GENERATING MUSIC and ANIMATION:
+* Pick a random minor scale for the VERSE. We shuffle scale and randomly pick 4 notes from the minor scale
+* We then choose how many notes to play, which is random (20-40 notes). The time is random as well. (.3-.8 secs)
+* The CHORUS is generated from a random major scale. It is 5-10 notes, each for a random time (1-2 secs)
+* The BRIDGE is on a major scale but played as harmonics. It has the SAME time (2-4 secs) per note,
+each note is random from major scale, however. This is same scale as chorus.
+* We generate a txt file that denotes pitch, duration, and type (1 = major, 2 = minor, 3 = harmonic)
+* This txt file is played in PlayThatTuneDeluxe.java, where animation is generated.
+* The animation is designed to look like a piano. When a note is within a certain pitch on piano,
+it lights up notes around it. The animation stays for the duration of the ntoe. 
+
+*/
+
 import java.io.*;
 import java.lang.System;
-
 
 public class sheetMusic {
 
